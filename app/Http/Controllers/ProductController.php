@@ -23,8 +23,8 @@ class ProductController extends Controller
     }
 
     public function show($id){
-        $products = Product::show($id);
-        return view('products.show', ['products' => $products]);
+        $product = Product::findOrFail($id);
+        return view('products.show', ['product' => $product]);
     }
 
     public function edit(Product $product){
