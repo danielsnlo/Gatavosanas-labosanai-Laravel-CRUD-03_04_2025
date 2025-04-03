@@ -22,6 +22,11 @@ class ProductController extends Controller
         return redirect(route('products.index'))->with('success', __('products.message_create_success'));
     }
 
+    public function show($id){
+        $products = Product::show($id);
+        return view('products.show', ['products' => $products]);
+    }
+
     public function edit(Product $product){
         return view('products.edit', ['product' => $product]);
     }
