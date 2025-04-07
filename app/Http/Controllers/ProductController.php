@@ -33,6 +33,7 @@ class ProductController extends Controller
 
     public function update(Product $product, Request $request){
         $data = $this->validateProduct($request);
+        $product->update($data);
         return redirect(route('products.index'))->with('success', __('products.message_update_success'));
     }
 
@@ -42,8 +43,8 @@ class ProductController extends Controller
     }
 
 
-    private function validateProduct($req){
-        return $req->validate([
+    private function validateProduct(Request $request){
+        return $request->validate([
             'name' => 'required',
             'qty' => 'required|numeric',
             'price' => 'required|decimal:0,2',
